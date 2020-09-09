@@ -115,6 +115,32 @@ AND hiredate > TO_DATE('19810601','yyyymmdd');
 
 WHERE 11 ~ 14 과제
 
+WHERE 11]
+SELECT *
+FROM emp
+WHERE job = 'SALESMAN'
+OR hiredate > TO_DATE('19810601','yyyymmdd');
+
+WHERE 12]
+SELECT *
+FROM emp
+WHERE job = 'SALESMAN'
+OR empno LIKE '78%';
+
+WHERE 13]
+SELECT *
+FROM emp
+WHERE job = 'SALESMAN'
+OR 7800 <= empno AND empno <=7900;
+
+WHERE 14]
+SELECT *
+FROM emp
+WHERE job = 'SALESMAN'
+OR empno LIKE '78%'
+AND hiredate > TO_DATE('19810601','yyyymmdd');
+
+
 정렬
 ********** 매우매우 중요 ***********
 
@@ -267,4 +293,8 @@ FROM emp;
 SELECT ROWNUM, e.*
 FROM emp e;
 
-하나의 쿼리를 테이블로 만들 경우 테이블 별칭을 지어줘야지만 ROWNUM 을 실무에서 사용할 수 있다.12
+하나의 쿼리를 테이블로 만들 경우 테이블 별칭을 지어줘야지만 ROWNUM 을 실무에서 사용할 수 있다.
+
+
+
+
