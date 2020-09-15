@@ -155,7 +155,7 @@ WHERE empno NOT IN(SELECT mgr
                    FROM emp);  --NULL값은 조회가 안된다.
                    
 pair wise 개념 : 순서쌍, 두가지 조건을 동시에 만족시키는 데이터를 조회 할 때 사용
-                AND 
+                AND 논리연산자와 결과 값이 다를 수 있다. (아래 예시 참조)
 서브쿼리 : 복수행, 복수컬럼
 SELECT *
 FROM emp
@@ -165,14 +165,17 @@ WHERE (mgr, deptno) IN (SELECT mgr, deptno
              
 SELECT *
 FROM emp
-WHERE mgt IN (SELECT mgr
+WHERE mgr IN (SELECT mgr
               FROM emp
               WHERE empno IN (7499, 7782)
-AND deptno IN (SELECT deptno
+          AND (SELECT deptno
                FROM emp
                WHERE empno IN (7499, 7782));
-            
+               
+mgr 7698, 7839
 deptno 30, 10
+mgr, deptno => AND ==> 4가지 조합 (7698, 30) (7698, 10) (7839, 30) (7839, 10)
+               pair wise => 2개만 (7698, 30)
 
 
 SCALAR SUBQUERY : SELECT 절에 기술된 서브쿼리
@@ -203,7 +206,7 @@ FROM emp;                                                 -- 비상호연관은 
                   메인쿼리가 항상 먼저 실행된다.
                   
 비상호연관 서브쿼리 : 메인 쿼리의 컬럼을 서브쿼리에서 사용하지 않은 서브쿼리
-                -서브쿼리만 단도긍로 실행하는 것이 가능하다.
+                -서브쿼리만 단독으로 실행하는 것이 가능하다.
                 -메인 쿼리와 서브 쿼리의 실행 순서가 정해져 있지 않다
                   메인=> 서브, 서브 => 메인 둘다 실행 가능
 
