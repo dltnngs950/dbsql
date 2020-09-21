@@ -117,7 +117,10 @@ WHERE table_name IN ('EMP', 'DEPT');
 
 DDL(view)
 
-VIEW : 
+VIEW : VIEW는 쿼리이다. (VIEW 테이블은 잘못된 표현)
+. 물리적인 데이터를 갖고 있지 않고 논리적인 데이터 정의 집합이다.(SELECT 쿼리이다)
+. view가 사용하고 있는 테이블의 데이터가 바뀌면 view의 조회 겨과도 같이 바뀐다.
+. 
 
 문법
 CREATE OR REPLACE VIEW 뷰이름 AS
@@ -131,9 +134,21 @@ FROM emp;
 GRANT CONNECT, RESOURCE TO 계정명;
 VIEW에 대한 생성권한은 RESOURCE 에 포함되지 않는다.
 
-SEM 계정에게 VIEW 객체를 생성할 수 있는 권한을 부여
+SELECT *
+FROM
+(SELECT empno, ename, job, mgr, hiredate, deptno
+FROM emp);
 
-GRANT CREATE VIEW TO Soohun;
+---------------------------------
+DELETE emp
+WHERE deptno = 10;
+실제 emp테이블에서 10번부서에 속하는 3명을 지웠으면 VIEW또한 3명이 지워진 상태로 조회가 된다.
+
+------------------------------------
+
+SEM (Soohun) 계정에 있는 V_EMP 뷰를 HR계정에게 조회할 수 있도록 권한 부여
+
+GRANT SELECT ON v_emp TO hr;
 
 
 
